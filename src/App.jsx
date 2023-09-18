@@ -10,45 +10,28 @@ import axios from 'axios';
 import React, { createContext } from 'react'
 import NoteState from './Context/NoteState'
 const NoteContext = createContext();
+import TextField from '@mui/material/TextField';
+
+
 
 
 function App() {
-
+  
   const [count, setCount] = useState(0);
-
-  const callApi =async()=>{
-   try{
-    
-
-      // let apidata =await axios.get("https://api.openweathermap.org/data/2.5/weather?q=karachi&appid=8a6506815b82d523f4d385ed3312b1a1&units=metric")
-      // console.log(apidata.data)
-      // let {main,name,sys,weather,wind} = apidata.data
-      // const {feels_like,humidity,pressure,temp,temp_max,temp_min} = main
-      // const {main:condition,description,icon}=weather[0]
-      // const {country,sunrise,sunset,}=sys
-      // console.log(condition);
-      // console.log(main)
-
-      // return({name,wind,feels_like,humidity,pressure,temp,temp_max,temp_min,condition,description,icon,country,sunrise,sunset})
-    }
-   catch(error){
-      console.log(error)
-   }
-  }
-
-  useEffect(()=>{
-    // callApi();
-  },[])
-
 
   return (
     <>
-    <NoteState>
-        <Navbar/>
-        <section>
-          <MiddleSection/>
+    
+       <NoteState>
+      
+     <Navbar/>
+     <div className='flex justify-center  flex-col items-center  w-full h-[70vh] '>
+        <section className=" flex justify-center items-center w-[100%]">
+          <MiddleSection />
       </section>
+      </div>
       </NoteState>
+      
       
      
       

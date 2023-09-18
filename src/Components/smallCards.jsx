@@ -5,7 +5,7 @@ function SmallCards(props) {
    
   return (
     <>
-      <div className="flex flex-col items-center justify-center bg-white text-black p-5">
+      <div className="flex flex-col items-center justify-center  text-black p-5 border  backdrop-blur-lg backdrop-opacity-90  inset-0 z-0 border rounded-lg">
         <div>{props.time}</div>
         <div>
           {" "}

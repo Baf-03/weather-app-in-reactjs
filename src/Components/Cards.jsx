@@ -1,61 +1,60 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import NoteContext from "../Context/NoteContext";
 // import NoteContext from "../Context/NoteContext";
 
-
-
-
-
-
 function Cards() {
-    const {icon,name,country,wind,humidity,description,feels_like,temp_max,temp_min,temp,rounded_temp} = useContext(NoteContext);
-    console.log(icon)
+  const {
+    icon,
+    name,
+    country,
+    wind,
+    humidity,
+    description,
+    feels_like,
+    temp_max,
+    temp_min,
+    temp,
+    rounded_temp,
+   
+  } = useContext(NoteContext);
+  console.log(icon);
+  let icon_length_modified =icon.slice(0,2)
+  console.log(icon_length_modified)
+ 
   return (
-    <>
-      <div className="w-[30%] mt-[3%]  border  backdrop-blur-lg backdrop-opacity-90  inset-0 z-0 border rounded-lg text-white">
-        <div className="flex justify-around items-center">
-          <div>
-            {" "}
-            <img
-              src={`http://openweathermap.org/img/wn/${icon}.png`}
-              className="w-20"
-            />
-          </div>
-          <div className="text-[2rem]">{rounded_temp}°</div>
-        </div>
+  
+     
 
-        <div className=" text-white text-xl font-bold text-center mt-3">
+      <div className="flex flex-col justify-center items-center ">
+        <section className="text-[1.7rem]">
           {name},{country}
-        </div>
+        </section>
+        <section className="flex  items-center justify-center h-[100%]">
+          <div>
+              <img
+                src={`http://openweathermap.org/img/wn/${icon_length_modified}d.png`}
+                className=" w-[4rem] md:w-32 "
 
-        <div className="flex justify-around mt-4">
-          <div>desc: {description}</div>
-          <div>Feels Like: {feels_like}°C</div>
-          <div>Max temp: {temp_max}</div>
-          <div>Min temp: {temp_min}</div>
-        </div>
+              />
+            </div>
+            <div className="text-[3rem] md:text-[7rem]">{rounded_temp}°</div>
+            <div className="md:text-[1.5rem] ms-2">
+              <div>C</div>
+              <div>F</div>
+            </div>
+        </section>
 
-        <div className="w-full flex justify-around mt-5">
-          <button className="flex flex-col items-center bg-blue-600 p-3 rounded-lg">
-            <div>Wind Speed</div>
-            <div>{wind.speed} km/h</div>
-          </button>
-          <button className="flex flex-col items-center bg-green-600 p-3 rounded-lg">
-            <div>Humidity</div>
-            <div>{humidity} gm/m3</div>
-          </button>
-        </div>
-
-        <div className="flex justify-around mt-5">
-            <div className="font-bold">Visibility</div>
-            <div>30.3</div>
-        </div>
-        <div className="w-100% h-[1px] bg-white my-3"></div>
-        <div className="text-center p-3 text-[1.5rem] items-center">
-           Rain,overCast
-        </div>
+        <section className="text-[1.7rem] capitalize">{description}</section>
+        <section>Updated as</section>
+        <section className="grid grid-cols-2 text-lg md:flex justify-around flex-wrap w-[80%] text-md mt-5">
+          <div>Air Quality:{} </div>
+          <div>Feels Like:{ Math.round(feels_like)} </div>
+          <div>Max-Temp: { Math.round(temp_max)}</div>
+          <div>Humidity: {humidity}</div>
+          <div>Wind Speed: {wind.speed}  Km/h</div>
+   </section>
       </div>
-    </>
+
   );
 }
 
