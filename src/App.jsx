@@ -17,7 +17,7 @@ let backgroundClass;
 // lowercaseCondition="asdsadd"
 
 if(lowercaseCondition=="smoke"){
-  backgroundClass ="bg-gray-700 h-[100vh] w-[100%]"
+  backgroundClass ="bg-gradient-to-br from-black to-gray-700 text-white h-[100vh] w-[100%]"
 }
 else if(lowercaseCondition=="clouds"){
   backgroundClass ="bg-gradient-to-br from-gray-900 to-blue-900 h-[100vh] w-[100%] text-white"
@@ -30,10 +30,10 @@ else{
 }
   
   const [count, setCount] = useState(0);
-
+ 
   return (
     <>
-  
+     
       <div className={backgroundClass}>
      <Navbar/>
      <div className='flex justify-center  flex-col items-center  w-full h-[70vh] '>

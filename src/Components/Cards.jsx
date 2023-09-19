@@ -28,6 +28,7 @@ function Cards() {
 
       <div className="flex flex-col justify-center items-center ">
         <section className="text-[1.7rem]">
+        
           {name},{country}
         </section>
         <section className="flex  items-center justify-center h-[100%]">
