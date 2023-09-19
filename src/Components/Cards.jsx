@@ -15,6 +15,7 @@ function Cards() {
     temp_min,
     temp,
     rounded_temp,
+    getUnit,
    
   } = useContext(NoteContext);
   console.log(icon);
@@ -39,19 +40,19 @@ function Cards() {
             </div>
             <div className="text-[3rem] md:text-[7rem]">{rounded_temp}°</div>
             <div className="md:text-[1.5rem] ms-2">
-              <div>C</div>
-              <div>F</div>
+              <div onClick={()=>getUnit("units=metric")} className="transition ease-out hover:scale-125">C</div>
+              <div onClick={getUnit} className="transition ease-out hover:scale-125">F</div>
             </div>
         </section>
 
         <section className="text-[1.7rem] capitalize">{description}</section>
         <section>Updated as</section>
         <section className="grid grid-cols-2 text-lg md:flex justify-around flex-wrap w-[80%] text-md mt-5">
-          <div>Air Quality:{} </div>
-          <div>Feels Like:{ Math.round(feels_like)} </div>
-          <div>Max-Temp: { Math.round(temp_max)}</div>
-          <div>Humidity: {humidity}</div>
-          <div>Wind Speed: {wind.speed}  Km/h</div>
+          <div className="transition ease-out hover:scale-125">Air Quality:{} </div>
+          <div className="transition ease-out hover:scale-125">Feels Like:{ Math.round(feels_like)} </div>
+          <div className="transition ease-out hover:scale-125">Max-Temp: { Math.round(temp_max)}</div>
+          <div className="transition ease-out hover:scale-125">Humidity: {humidity}</div>
+          <div className="transition ease-out hover:scale-125">Wind Speed: {wind.speed}  Km/h</div>
    </section>
       </div>
 

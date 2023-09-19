@@ -4,11 +4,15 @@ import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CircularWithValueLabel from "./progress";
+
+
 
 const NoteState = (props) => {
     let [citysearch, setCitySearch] = useState("karachi");
     const [weatherData, setWeatherData] = useState("");
     const [forecastdata, setforecast_data] = useState("");
+    let [unit,setUnit]=useState("units=metric")
     const data_from_dates = [];
     let my_array = [];
     const days2 = [
@@ -28,15 +32,16 @@ const NoteState = (props) => {
         const fetchData = async () => {
          try {
           const response = await axios.get(
-              `https://api.openweathermap.org/data/2.5/weather?q=${citysearch}&appid=8a6506815b82d523f4d385ed3312b1a1&units=metric `
+              `https://api.openweathermap.org/data/2.5/weather?q=${citysearch}&appid=8a6506815b82d523f4d385ed3312b1a1&${unit} `
          );
          setWeatherData(response.data);
+         
         } catch (error) {
         console.error("Error fetching weather data:", error);
         }
         try {
             const forecast_data = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${citysearch}&appid=8a6506815b82d523f4d385ed3312b1a1&units=metric`
+          `https://api.openweathermap.org/data/2.5/forecast?q=${citysearch}&appid=8a6506815b82d523f4d385ed3312b1a1&${unit}`
             );
             setforecast_data(forecast_data);
             console.log(forecast_data);
@@ -51,17 +56,16 @@ const NoteState = (props) => {
     };
 
     fetchData();
-  }, [citysearch]);
+  }, [citysearch,unit]);
   //------------------------end of use Effect------------------------------------------
 
 
   const ChangeHandler = () => {
     console.log("what is");
     if (!forecastdata) {
+
       // toast.error("error finding City "+citysearch);
     } else {
-      console.log(citysearch);
-
       toast.success("successfully fetched data for " + citysearch);
       console.log(citysearch);
       mera_function();
@@ -88,7 +92,7 @@ const NoteState = (props) => {
         let result2 = new Date(result);
         const dayOfWeek = result2.getDay();
         let daysname = days2[dayOfWeek];
-        // console.log(result, daysname);
+
         my_array.push(result);
         day_array.push(daysname);
         data_from_dates.push(forecastdata.data.list[i]);
@@ -100,11 +104,12 @@ const NoteState = (props) => {
   if (!weatherData || !forecastdata) {
     return (
       <div className="text-white flex justify-center items-center h-[100vh] w-full">
-        Loading <CircularProgress />
+        Loading <CircularProgress /><CircularWithValueLabel/>
       </div>
     );
   } else {
     mera_function();
+    
   }
    //get data function is made for search functionality it will be pressed from navbar component
    const getCity = (data) => {
@@ -116,6 +121,17 @@ const NoteState = (props) => {
       console.log("no data");
     }
   };
+  const getUnit =(data)=>{
+    if (data) {
+      console.log("parent called");
+      setUnit(data)
+      
+     
+    } else {
+      console.log("no data");
+      setUnit("")
+    }
+  }
 
   const { main, name, sys, weather, wind, dt, coord } = weatherData;
   const { feels_like, humidity, pressure, temp, temp_max, temp_min } = main;
@@ -147,6 +163,7 @@ const NoteState = (props) => {
         data_from_dates,
         getCity,
         day_array,
+        getUnit,
       }}
     >
       {props.children}

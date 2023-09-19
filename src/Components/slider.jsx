@@ -17,6 +17,7 @@ export default function CarouselRatio() {
    
 
   return (
+   
     <Box
       sx={{
         display: 'flex',
@@ -37,7 +38,7 @@ export default function CarouselRatio() {
       }}
     >
     
-
+      
       {data_from_dates.map((item,index) => (
         <Card orientation="horizontal" size="lg" key={index} variant="outlined" sx={{backgroundColor: 'gray',}} >
           <AspectRatio ratio="1" sx={{ minWidth: 60 }}>
@@ -58,6 +59,8 @@ export default function CarouselRatio() {
           </Box>
         </Card>
       ))}
+     
     </Box>
+   
   );
 }
