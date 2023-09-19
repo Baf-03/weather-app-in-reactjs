@@ -26,7 +26,7 @@ const NoteState = (props) => {
     ];
     let day_array = [];
     let [dateformat, setDate] = useState("");
-    let value = 0;
+    let value1 = 0;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,12 +46,12 @@ const NoteState = (props) => {
             setforecast_data(forecast_data);
             console.log(forecast_data);
             ChangeHandler();
+            
         } catch (error) {
-            if ((value = 1)) {
-             toast.error("error finding City");
-        } else {
-          value = 1;
-        }
+            if ((value1 = 1)) {
+            //  toast.error("error finding City");
+            }
+            value1=1
       }
     };
 
@@ -95,7 +95,11 @@ const NoteState = (props) => {
 
         my_array.push(result);
         day_array.push(daysname);
+        
         data_from_dates.push(forecastdata.data.list[i]);
+        if(my_array.length==5){
+          break;
+        }
         ++j;
       }
     }
